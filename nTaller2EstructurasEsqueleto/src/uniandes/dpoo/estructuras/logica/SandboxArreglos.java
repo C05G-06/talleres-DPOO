@@ -54,7 +54,11 @@ public class SandboxArreglos
      */
     public String[] getCopiaCadenas( )
     {
-        return null;
+        String[] copia = new String[arregloCadenas.length];
+        for (int i = 0; i < arregloCadenas.length; i++) {
+            copia[i] = arregloCadenas[i];
+        }
+        return copia;
     }
 
     /**
@@ -114,13 +118,18 @@ public class SandboxArreglos
     	for (int n : arregloEnteros) {
     		if (n != valor) contador++;
     	}
-    	int[] nuevo = new int[contador];
-    	int i = 0;
-    	for (int n : arregloEnteros) {
-    		if (n != valor) {
-    			nuevo[i++] = n;
-    		}
-    	}
+        if (contador == arregloEnteros.length) return; // no estaba el valor
+
+        int[] nuevo = new int[contador];
+        int i = 0;
+
+        for (int n : arregloEnteros) {
+            if (n != valor) {
+                nuevo[i++] = n;
+            }
+        }
+
+        arregloEnteros = nuevo;
     }
 
     /**
@@ -283,7 +292,15 @@ public class SandboxArreglos
      */
     public int contarApariciones( String cadena )
     {
-        return -1;
+        int contador = 0;
+
+        for (String s : arregloCadenas) {
+            if (s.equalsIgnoreCase(cadena)) {
+            	contador++;
+            }
+        }
+
+        return contador;
     }
 
     /**
